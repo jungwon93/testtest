@@ -1,9 +1,7 @@
 package com.springbook.biz.user;
 
-
 //VO(Value Object)
 public class UserVO {
-	
 	private String id;
 	private String password;
 	private String name;
@@ -40,16 +38,9 @@ public class UserVO {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", password=" + password
-				+ ", name=" + name + ", role=" + role + "]";
+		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", role=" + role + "]";
 	}
-	
-	
-
-	
-	
-	
-	
 }

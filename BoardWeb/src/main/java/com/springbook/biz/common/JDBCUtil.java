@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class JDBCUtil {
-
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -28,7 +27,6 @@ public class JDBCUtil {
 				stmt = null;
 			}
 		}
-
 		if (conn != null) {
 			try {
 				if (!conn.isClosed())
@@ -42,15 +40,16 @@ public class JDBCUtil {
 	}
 
 	public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
-		try {
-			if (!rs.isClosed())
-				rs.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			rs = null;
+		if (rs != null) {
+			try {
+				if (!rs.isClosed())
+					rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				rs = null;
+			}
 		}
-
 		if (stmt != null) {
 			try {
 				if (!stmt.isClosed())
@@ -60,16 +59,15 @@ public class JDBCUtil {
 			} finally {
 				stmt = null;
 			}
-
-			if (conn != null) {
-				try {
-					if (!conn.isClosed())
-						conn.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					conn = null;
-				}
+		}
+		if (conn != null) {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				conn = null;
 			}
 		}
 	}
